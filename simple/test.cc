@@ -4,7 +4,6 @@
 #include <cmath>
 
 namespace Loop {
-// Definition for the Loop::loop function
 void loop(const int imin, const int imax, const std::function<void(const int)>& f) {
   for(int i = imin; i < imax; i++) {
     f(i);
@@ -56,7 +55,9 @@ public:
         x_data{ NxTotal },
         gridfunction_data{ 2 * NxTotal } {
 
-    loop_everywhere([this](const int i) { this->x(i) = this->xmin + (i - this->Ng) * this->dx; });
+    loop_everywhere([this](const int i) {
+      this->x(i) = this->xmin + (i - this->Ng) * this->dx;
+    });
   }
 
   void loop_interior(const std::function<void(const int)>& f) {
@@ -67,20 +68,36 @@ public:
     Loop::loop(0, NxTotal, f);
   }
 
-  int size() {
-    return NxTotal;
-  }
-
-  double& x(const int i) {
-    return x_data(i);
-  }
-
   double& u(const int i) {
     return gridfunction_data(i);
   }
 
   double& v(const int i) {
     return gridfunction_data(i + NxTotal);
+  }
+
+  double& x(const int i) {
+    return x_data(i);
+  }
+
+  int nx() const {
+    return Nx;
+  }
+
+  int nghost() const {
+    return Ng;
+  }
+
+  int size() const {
+    return NxTotal;
+  }
+
+  double x_max() const {
+    return xmax;
+  }
+
+  double x_min() const {
+    return xmin;
   }
 };
 
@@ -102,8 +119,9 @@ int main(int argc, char* argv[]) {
 
   wave_set_initial_data(grid);
 
-  grid.loop_everywhere(
-      [&grid](const int i) { std::cout << grid.x(i) << " " << grid.u(i) << "\n"; });
+  grid.loop_everywhere([&grid](const int i) {
+    std::cout << grid.x(i) << " " << grid.u(i) << "\n";
+  });
 
   return 0;
 }
