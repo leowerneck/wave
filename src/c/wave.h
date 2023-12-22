@@ -41,6 +41,6 @@ typedef struct waveparams_t {
 
 #define NG 1
 
-#define IDX(gf, i, j, k) ( (i) + n[0]*( (j) + n[1]*( (k) + n[2]*(gf) ) ) )
+#define IDX(gf, i, j, k) ((i) + n[0] * ((j) + n[1] * ((k) + n[2] * (gf))))
 
 #endif /* WAVE_H_ */
