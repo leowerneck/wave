@@ -1,6 +1,6 @@
 #include "wave.h"
 
-void rk4(
+void rk4_step(
     void rhs(const void* restrict, const int* restrict, const real* restrict, real* restrict),
     void bcs(const void* restrict, const int* restrict, real* restrict),
     const void* restrict params,
