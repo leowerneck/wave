@@ -1,6 +1,6 @@
 #include "wave.h"
 
-void wave_id(const int* restrict n, real* restrict xx[3], real* restrict gfs) {
+void wave_id(const int *restrict n, real *restrict xx[3], real *restrict gfs) {
 
 #pragma omp parallel for collapse(3)
   for(int k = 0; k < n[2]; k++) {

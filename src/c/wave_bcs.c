@@ -1,6 +1,6 @@
 #include "wave.h"
 
-void wave_bcs(const void* restrict params_in, const int* restrict n, real* restrict gfs) {
+void wave_bcs(const void *restrict params_in, const int *restrict n, real *restrict gfs) {
 
   // Apply periodic boundary conditions.
   //

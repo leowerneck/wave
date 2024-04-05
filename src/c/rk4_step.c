@@ -1,12 +1,12 @@
 #include "wave.h"
 
 void rk4_step(
-    void rhs(const void* restrict, const int* restrict, const real* restrict, real* restrict),
-    void bcs(const void* restrict, const int* restrict, real* restrict),
-    const void* restrict params,
-    const int* restrict n,
-    rk4params_t* restrict rk4params,
-    real* restrict y) {
+    void rhs(const void *restrict, const int *restrict, const real *restrict, real *restrict),
+    void bcs(const void *restrict, const int *restrict, real *restrict),
+    const void *restrict params,
+    const int *restrict n,
+    rk4params_t *restrict rk4params,
+    real *restrict y) {
 
   const int ntotal = NGFS * n[0] * n[1] * n[2];
 
@@ -20,11 +20,11 @@ void rk4_step(
   // y -> y + (dt/6)*(k1 + 2*k2 + 2*k3 + k4)
 
   const real dt = rk4params->dt;
-  real* k1 = rk4params->k1;
-  real* k2 = rk4params->k2;
-  real* k3 = rk4params->k3;
-  real* k4 = rk4params->k4;
-  real* ky = rk4params->ky;
+  real *k1 = rk4params->k1;
+  real *k2 = rk4params->k2;
+  real *k3 = rk4params->k3;
+  real *k4 = rk4params->k4;
+  real *ky = rk4params->ky;
 
   // First RK4 step
   rhs(params, n, y, k1);

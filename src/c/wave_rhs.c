@@ -1,12 +1,12 @@
 #include "wave.h"
 
 void wave_rhs(
-    const void* restrict params_in,
-    const int* restrict n,
-    const real* restrict gfs,
-    real* restrict rhs) {
+    const void *restrict params_in,
+    const int *restrict n,
+    const real *restrict gfs,
+    real *restrict rhs) {
 
-  const waveparams_t* restrict params = (const waveparams_t* restrict)params_in;
+  const waveparams_t *restrict params = (const waveparams_t *restrict)params_in;
 
   const real c2 = params->c2;
   const real invdx2 = params->invdx2;
